@@ -1,1 +1,1 @@
-Vegan cheezburgerz?
+Vegan cheezburgerz with a side of bacon
