@@ -1,9 +1,10 @@
-contacts = {
+@contacts = {
 
 # PALS	
 
-	"Batman" => {
-		alignment: "good",
+	"batman" => {
+		display_name: "Batman",
+		alignment: "heaven-bound",
 		real_name: "Bruce Wayne",
 		aliases: [
 			"Insider",
@@ -31,8 +32,9 @@ contacts = {
 			"difficulty trusting others"
 		]
 	},
-	"Spider-Man" => {
-		alignment: "good",
+	"spiderman" => {
+		display_name: "Spider-Man",
+		alignment: "heaven-bound",
 		real_name: "Peter Benjamin Parker",
 		aliases: [
 			"Spidey",
@@ -61,8 +63,9 @@ contacts = {
 			"spider sense can be blocked"
 		]
 	},
-	"Wonder Woman" => {
-		alignment: "good",
+	"wonderwoman" => {
+		display_name: "Wonder Woman",
+		alignment: "heaven-bound",
 		real_name: "Diana of Themyscira",
 		aliases: [
 			"Diana Prince",
@@ -88,8 +91,9 @@ contacts = {
 			"vulnerability to piercing weapons"
 		]
 	},
-	"Superman" => {
-		alignment: "good",
+	"superman" => {
+		display_name: "Superman",
+		alignment: "heaven-bound",
 		real_name: "Kal-El",
 		aliases: [
 			"Clark Joseph Kent",
@@ -121,34 +125,36 @@ contacts = {
 
 # NEUTRAL
 	
-	# "Iron Man" => {
-	# 	alignment: "neutral",
-	# 	real_name: "Anthony Edward 'Tony' Stark",
-	# 	aliases: [
-	# 		"'Shellhead'",
-	# 		"'Golden Avenger'",
-	# 		"Hogan Potts"
-	# 	],
-	# 	location: "various: San Francisco, CA, U.S.A.; New York, NY, U.S.A.",
-	# 	occupation: "various: mechanical engineer, inventor, industrialist",
-	# 	marital_status: "single",
-	# 	gender: "male",
-	# 	height: "6ft 1in",
-	# 	weight: "225 lbs",
-	# 	eyes: "blue",
-	# 	hair: "black",
-	# 	strengths: [
-	# 		"genius-level intellect",
-	# 		"ability to invent sophisticated devices",
-	# 		"keen business mind",
-	# 		"wealth"
-	# 	],
-	# 	weaknesses: [
-	# 		"body function dependent on R.T. node",
-	# 		"Pepper Potts"
-	# 	]
-	# },
-	"Catwoman" => {
+	"ironman" => {
+		display_name: "Iron Man",
+		alignment: "neutral",
+		real_name: "Anthony Edward 'Tony' Stark",
+		aliases: [
+			"'Shellhead'",
+			"'Golden Avenger'",
+			"Hogan Potts"
+		],
+		location: "various: San Francisco, CA, U.S.A.; New York, NY, U.S.A.",
+		occupation: "various: mechanical engineer, inventor, industrialist",
+		marital_status: "single",
+		gender: "male",
+		height: "6ft 1in",
+		weight: "225 lbs",
+		eyes: "blue",
+		hair: "black",
+		strengths: [
+			"genius-level intellect",
+			"ability to invent sophisticated devices",
+			"keen business mind",
+			"wealth"
+		],
+		weaknesses: [
+			"body function dependent on R.T. node",
+			"Pepper Potts"
+		]
+	},
+	"catwoman" => {
+		display_name: "Catman",
 		alignment: "neutral",
 		real_name: "Selina Kyle",
 		aliases: [
@@ -175,7 +181,8 @@ contacts = {
 			"vulnerability to Batman's charm"
 		]
 	},
-	"Poison Ivy" => {
+	"poisonivy" => {
+		display_name: "Poison Ivy",
 		alignment: "neutral",
 		real_name: "Pamela Lillian Isley",
 		aliases: [
@@ -201,7 +208,8 @@ contacts = {
 			"vulnerability to darkness"
 		]
 	},
-	"Magneto" => {
+	"magneto" => {
+		display_name: "Magneto",
 		alignment: "neutral",
 		real_name: "Max Eisenhardt",
 		aliases: [
@@ -233,8 +241,9 @@ contacts = {
 
 # NAUGHTY MONKEYS
 
-	"Lex Luthor" => {
-		alignment: "bad",
+	"lexluthor" => {
+		display_name: "Lex Luthor",
+		alignment: "naughty monkey",
 		real_name: "Alexander Joseph Luthor",
 		aliases: [
 			"Mockingbird"
@@ -259,8 +268,9 @@ contacts = {
 			"inability to comprehend enemies"
 		]
 	},
-	"The Joker" => {
-		alignment: "bad",
+	"thejoker" => {
+		display_name: "The Joker",
+		alignment: "naughty monkey",
 		real_name: "unknown",
 		aliases: [
 			"Domino Killer",
@@ -283,11 +293,13 @@ contacts = {
 			"cosmic awareness"
 		],
 		weaknesses: [
-			"mental illness"
+			"mental illness",
+			"obsession with Batman"
 		]
 	},
-	"Shredder" => {
-		alignment: "bad",
+	"shredder" => {
+		display_name: "Shredder",
+		alignment: "naughty monkey",
 		real_name: "Oroku Saki",
 		aliases: [
 			"Ch'rell",
@@ -320,14 +332,14 @@ contacts = {
 # CLASS 3 HOMEWORK
 
 puts "About whom are you inquiring, sir?"
-name = gets.chomp
+name = gets.chomp.downcase.delete(" .!-")
 
 puts ""
-puts "#{name}'s profile: #{contacts["#{name}"]}"
+puts "#{name}'s profile: #{@contacts[name]}"
 
 puts ""
 puts "All profiles:"
-puts contacts
+puts @contacts
 
 
 # CLASS 4 HOMEWORK
@@ -335,18 +347,19 @@ puts contacts
 puts ""
 
 puts "Name the first contact, sir."
-contact1 = gets.chomp
+contact1 = gets.chomp.downcase.delete(" .!-")
 
 puts "And the second contact?"
-contact2 = gets.chomp
+contact2 = gets.chomp.downcase.delete(" .!-")
 
-def contact_compare(contact1, contact2)
-	puts "#{contact1}\''s strengths are #{contacts[:"#{contact1}"][:strengths]} and #{contact2}\''s strengths are #{contacts[:"#{contact2}"][:strengths]}."
+def sw_versus(contact1, contact2)
+	puts "#{contact1}\'s strengths are #{@contacts[contact1][:strengths]} and #{contact2}\'s strengths are #{@contacts[contact2][:strengths]}."
 	puts ""
-	puts "#{contact1}\''s weaknesses are #{contacts[:"#{contact1}"][:weaknesses]} and #{contact2}\''s weaknesses are #{contacts[:"#{contact2}"][:weaknesses]}."
+	puts "#{contact1}\'s weaknesses are #{@contacts[contact1][:weaknesses]} and #{contact2}\'s weaknesses are #{@contacts[contact2][:weaknesses]}."
 end
 
-contact_compare(contact1, contact2)
+puts 
+sw_versus(contact1, contact2)
 
 
 
